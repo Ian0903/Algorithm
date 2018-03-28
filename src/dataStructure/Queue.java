@@ -5,7 +5,7 @@ import java.util.Iterator;
  * 使用链表实现队列
  */
 
-class LinkListQueue<Item> implements Iterable<Item>{
+public class Queue<Item> implements Iterable<Item>{
 	
 	private Node first;
 	private Node last;
@@ -56,13 +56,10 @@ class LinkListQueue<Item> implements Iterable<Item>{
 		Item item;
 		Node next;
 	}
-}
-
-public class Queue {
-
+	
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
-		LinkListQueue<Integer> llq = new LinkListQueue<Integer>();
+		Queue<Integer> llq = new Queue<Integer>();
 		for(int i = 0;i<10;i++){
 			llq.enqueue(i);
 		}
@@ -70,5 +67,5 @@ public class Queue {
 			System.out.print(llq.dequeue()+" ");
 		}
 	}
-
 }
+
