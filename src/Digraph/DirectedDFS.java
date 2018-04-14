@@ -22,7 +22,7 @@ public class DirectedDFS {
 	private void dfs(Digraph G,int v){
 		marked[v] = true;
 		for(int w : G.adj(v))
-			if(!marked[w]) dfs(G,v);
+			if(!marked[w]) dfs(G,w);
 	}
 	
 	public boolean marked(int v){

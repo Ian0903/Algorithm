@@ -28,7 +28,7 @@ public class DirectedCycle {
 			if(this.hasCycle()) return;
 			else if(!marked[w]){
 				edgeTo[w] = v;
-				dfs(G,v);
+				dfs(G,w);
 			}
 			else if(onStack[w]){
 				cycle = new Stack<Integer>();
@@ -36,7 +36,7 @@ public class DirectedCycle {
 					cycle.push(x);
 				}
 				cycle.push(w);
-				cycle.push(v);
+				cycle.push(v);	
 			}
 			onStack[v] = false;
 		}

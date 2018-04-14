@@ -23,12 +23,12 @@ public class BreadthFirstPaths {
 		bfs(G,s);
 	}
 	
-	private void bfs(Graph G,int v){
-		marked[v] = true;//标记起点
+	private void bfs(Graph G,int s){
+		marked[s] = true;//标记起点
 		Queue<Integer> queue = new Queue<Integer>();
-		queue.enqueue(v);//将它加入队列
+		queue.enqueue(s);//将它加入队列
 		while(!queue.isEmpty()){
-			queue.dequeue();//从队列中删除下一个顶点
+			int v = queue.dequeue();//从队列中删除下一个顶点
 			for(int w : G.adj(v)){
 				if(!marked[w]){
 					edgeTo[w] = v;
