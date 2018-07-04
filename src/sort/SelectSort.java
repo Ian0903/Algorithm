@@ -15,17 +15,15 @@ public class SelectSort {
 	}
 	
 	public static void selectSort(int[] arr){
-		int n = arr.length;
-		for(int i = 0;i<n;i++){
+		for(int i = 0;i<arr.length;i++){
 			int min = i;
-			for(int j = i+1;j<n;j++){
-				if(arr[j]<arr[min]) min = j;//寻找最小元素的index
+			for(int j = i+1;j<arr.length;j++){
+				if(arr[j] < arr[min]) min = j;//记录最小值的角标
 			}
-			//交换元素位置
+			//将最小值提到最左端
 			int temp = arr[i];
 			arr[i] = arr[min];
 			arr[min] = temp;
-			
 		}
 	}
 	

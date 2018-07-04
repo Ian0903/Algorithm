@@ -15,27 +15,30 @@ public class QuickSort {
 	}
 	
 	public static void quickSort(int[] arr,int low,int high){
-		if(low>=high) return;
-		int j = partition(arr,low,high);
-		quickSort(arr,low,j-1);
-		quickSort(arr,j+1,high);
+		if(low >= high) return;
+		int partition = partition(arr,low,high);
+		quickSort(arr,low,partition-1);
+		quickSort(arr,partition+1,high);
 	}
 	
 	public static int partition(int[] arr,int low,int high){
-		int i = low,j = high+1;//因为基准数取了low,则左扫描实际是从第二位开始，因此j也需要+1
-		int key = arr[low];//基准数
+		int i = low;
+		int j = high+1;//由于基准值选为1，因此j+1
+		int key = arr[low];//基准值
 		while(true){
-			while(arr[++i]<key) if(i == high) break;//从左往右扫描，遇到小于key的值停止
-			while(arr[--j]>key) if(j == low) break;//从右往左扫描，遇到大于key的值停止
+			while(arr[++i] < key && i != high);
+			while(arr[--j] > key && j != low);
 			if(i>=j) break;
+			//交换左右指针的值
 			int temp = arr[i];
 			arr[i] = arr[j];
 			arr[j] = temp;
 		}
-		//将基准数放到正确位置
+		//左右指针相遇，将基准值放到正确位置
 		int temp = arr[low];
 		arr[low] = arr[j];
 		arr[j] = temp;
+		
 		return j;
 	}
 	

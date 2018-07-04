@@ -20,22 +20,37 @@ public class MergeSort {
 	public static void sort(int[] arr,int low,int high){
 		if(low>=high) return;
 		int mid = low + (high - low)/2;
-		sort(arr,low,mid);
-		sort(arr,mid+1,high);
-		mergeSort(arr,low,mid,high);
+		sort(arr,low,mid);//左半边排序
+		sort(arr,mid+1,high);//右半边排序
+		mergeSort(arr,low,mid,high);//归并左右排序
 	}
 	
 	public static void mergeSort(int[] arr,int low,int mid,int high){
-		int i = low,j = mid+1;
-		//将值复制进辅助数组
-		for(int k = low;k<=high;k++){
-			aux[k] = arr[k];
+		int i = low;//左序列指针
+		int j = mid+1;//右序列指针
+		int t = 0;//临时数组指针
+		//比较左右序列指针，取值小的放入临时数组中
+		while(i <= mid && j <= high){
+			if(arr[i] < arr[j]){
+				aux[t++] = arr[i++];
+			}else{
+				aux[t++] = arr[j++];
+			}
 		}
-		for(int k = low;k<=high;k++){
-			if(i>mid) arr[k] = aux[j++];//右半边取尽
-			else if(j>high) arr[k] = aux[i++];//左半边取尽
-			else if(aux[j]<aux[i]) arr[k] = aux[j++];
-			else arr[k] = aux[i++];
+		
+		//将左边剩余的值存入临时数组中
+		while(i <= mid){
+			aux[t++] = arr[i++];
+		}
+		//将右边剩余的值存入临时数组中
+		while(j <= high){
+			aux[t++] = arr[j++];
+		}
+		
+		//把临时数组的值复制回原数组
+		t=0;
+		while(low <= high){
+			arr[low++] = aux[t++]; 
 		}
 	}
 	

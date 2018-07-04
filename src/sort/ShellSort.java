@@ -15,15 +15,15 @@ public class ShellSort {
 	}
 	
 	public static void shellSort(int[] arr){
-		//增量gap，并逐步减小增量gap
-		for(int gap = arr.length/2;gap>0;gap/=2){
+		//增量gap，并逐步减小增量
+		for(int gap = arr.length/2;gap > 0;gap/=2){
+			//从gap个元素开始，逐个对其所在的数组进行插入排序
 			for(int i = gap;i<arr.length;i++){
-				int j=i;
-				while(j-gap>=0 && arr[j]<arr[j-gap]){
+				int j = i;
+				while(j - gap >= 0 && arr[j]<arr[j-gap]){
 					int temp = arr[j];
 					arr[j] = arr[j-gap];
 					arr[j-gap] = temp;
-					j-=gap;
 				}
 			}
 		}

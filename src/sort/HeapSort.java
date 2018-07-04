@@ -9,36 +9,38 @@ public class HeapSort {
 
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
-		int[] arrTest = {2,-1,0,15,6,1,7,2};
+		int[] arrTest = {4,-1,0,15,6,1,7,2};
 		heapSort(arrTest);
 		printArr(arrTest);
 	}
 	
 	public static void heapSort(int[] arr){
 		int N = arr.length;
-		for(int k = N/2;k>=1;k--)//堆构建
-			sink(arr,k,N);
-		
-		while(N>1){
-			int temp = arr[1];
-			arr[1] = arr[N];
-			arr[N--] = arr[1];
-			//每交换一次首尾节点后进行下沉排序
-			sink(arr,1,N);
+		for(int i = N/2-1;i>=0;i--)//堆构建
+			sink(arr,i,N);
+		//交换顶点和最后一个节点，重新下沉调整堆结构
+		for(int j = arr.length - 1;j>0;j--){
+			int temp = arr[0];
+			arr[0] = arr[j];
+			arr[j] = temp;
+			sink(arr,0,j);
 		}
 		
 	}
 	
 	//堆元素下沉操作
-	public static void sink(int[] a,int k,int N){
-		while(2*k<=N){
-			int j = 2*k;
-			if(j<N && a[j]<a[j+1]) j++;
-			if(a[k]>a[j]) break;
-			int temp = a[k];
-			a[k] = a[j];
-			a[j] = temp;
-			k = j;
+	public static void sink(int[] arr,int i,int N){
+		for(int k = 2*i+1;k<N;k = 2*k+1){//从i节点的左子节点开始
+			if(k+1<N && arr[k]<arr[k+1]){//若左子节点小于右子节点则k指向右子节点
+				k++;
+			}
+			if(arr[k]>arr[i]){//若子节点大于父节点，则交换值
+				int temp = arr[k];
+				arr[k] = arr[i];
+				arr[i] = temp;
+			}else{
+				break;
+			}
 		}
 	}
 	
